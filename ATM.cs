@@ -84,10 +84,10 @@ public class cardHolder{
             Console.WriteLine("How much would you like to withdraw?: ");
             double withdraw = Double.parse(Console.ReadLine());
             // need to check if the user has enough money to withdraw
-            if(currentUser.GetBalance() > withdraw){
+            if(currentUser.GetBalance() < withdraw){
                 currentUser.SetBalance(currentUser.GetBalance() - withdraw);
             } else {
-                Console.WriteLine("Insufficent funds. You ain't got no money!")
+                Console.WriteLine("Insufficent funds! You ain't got no money!")
             }
             Console.WriteLine("Thank you. Your new balance is: " + currentUser.GetBalance());
         }
@@ -103,6 +103,72 @@ public class cardHolder{
         ListOfCardHolders.add(new cardHolder("456", 456, "Jane", "Doe", 200.10));
         ListOfCardHolders.add(new cardHolder("789", 789, "Micheal", "Jackson", 130000.59));
         ListOfCardHolders.add(new cardHolder("321", 321, "Eren", "Yeager", 1.05));
+
+        // prompt the user to use the ATM
+            Console.WriteLine("Welcome to the ATM");
+            Console.WriteLine("Please insert debit card: ");
+            String debitCard = "";
+            cardHolder currentUser;
+
+            while(true){
+            try {
+                debitCardNum = Console.ReadLine();
+                // check against the DB
+                // firstOrDefault will allow us to enumerate a list and search for certain properities and return a certain object
+                currentUser = ListOfCardHolders.FirstOrDefault(a => a.CardNumber == debitCardNum);
+                if(currentUser != null) {
+                    break;
+                } else {
+                    Console.WriteLine("Card not recongised. Please try again.");
+                }
+            } catch {
+                Console.WriteLine("Card not recongised. Please try again.");
+            }
+            } 
+
+            Console.WriteLine("Please enter your pin: ");
+            int userPin = 0;
+            
+            while(true){
+            try {
+                userPin = Int.parse(Console.ReadLine());
+                if(currentUser.GetPin() == userPin) {
+                    break;
+                } else {
+                    Console.WriteLine("Incorrect pin. Please try again.");
+                }
+            } catch {
+                Console.WriteLine("Incorrect pin. Please try again.");
+            }
+            } 
+
+            Console.WriteLine("Welcome " + currentUser.GetFirstName() + ":)");
+            int option = 0;
+
+            do{
+            printOptions();
+            try{
+                option = int.parse(Console.ReadLine());
+            } catch {
+
+            }
+            if(option == 1){
+                deposit(currentUser);
+            }
+            else if(option == 2){
+                withdrawal(currentUser);
+            }
+            else if(option == 3){
+                balance(currentUser);
+            }
+            else if(option ==4){
+                break;
+            }
+            else{
+                option = 0;
+            }
+            } while (option != 4);
+            Console.WriteLine("Thank you! Have a nice day! :)");
 
     }
 
