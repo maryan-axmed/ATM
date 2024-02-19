@@ -22,4 +22,40 @@ public class cardHolder{
         return cardNumber;
     }
 
+    public int getPin(){
+        return pin;
+    }
+
+    public String getFirstName(){
+        return firstName;
+    }
+    
+    public String getLastName(){
+        return lastName;
+    }
+
+    public double getBalance(){
+        return balance;
+    }
+
+    public String setCardNumber(){
+        cardNumber = newCardNumber;
+    }
+
+    public int setPin(){
+        pin = newPin;
+    }
+
+    public String setFirstName(){
+        firstName = newFirstName;
+    }
+    
+    public String setLastName(){
+        lastName = newLastName
+    }
+
+    public double setBalance(){
+        balance = newBalance;
+    }
+
 }
