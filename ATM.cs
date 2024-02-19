@@ -58,4 +58,25 @@ public class cardHolder{
         balance = newBalance;
     }
 
+    public static void Main(String[] args){
+
+        // this method will handle the interface for the user after logging in:
+        void printOptions(){
+            Console.WriteLine("Please choose from the one of the following ootions...");
+            Console.WriteLine("1. Deposit");
+            Console.WriteLine("2. Withdraw");
+            Console.WriteLine("3. Show balance");
+            Console.WriteLine("4. Exit");
+        }
+
+        // this method will handle deposit
+        void deposit(cardHolder currentUser){
+            Console.WriteLine("How much would you like to deposit? ");
+            double deposit = Double.parse(Console.ReadLine());
+            // console.readline will read what the user has inputted.
+            currentUser.setBalance(deposit);
+        }
+
+    }
+
 }
